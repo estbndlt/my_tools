@@ -7,6 +7,40 @@ import subprocess
 MODE_INSTALLER = 'INSTALLER'
 
 
+def create_repo(repo_dir, gitignore=None):
+    # Create repo
+    print('Creating repo...')
+    p = subprocess.Popen('git init',
+                         cwd=repo_dir, shell=True)
+    p.wait()
+
+    if gitignore is not None:
+        # TODO(Esteban): Copy/Generate .gitignore file
+        pass
+
+        # Add .gitignore
+        p = subprocess.Popen('git add .gitignore',
+                             cwd=repo_dir, shell=True)
+        p.wait()
+
+        # Commit .gitignore
+        p = subprocess.Popen('git commit -m "Add .gitignore"',
+                             cwd=repo_dir, shell=True)
+        p.wait()
+
+    # Stage all installer files
+    print('Adding all files...')
+    p = subprocess.Popen('git add *',
+                         cwd=repo_dir, shell=True)
+    p.wait()
+
+    # Commit everything
+    print('Initial commit...')
+    p = subprocess.Popen('git commit -m "Initial commit"',
+                         cwd=repo_dir, shell=True)
+    p.wait()
+
+
 def gitify_installer(src_path, dest_path):
     if not os.path.exists(src_path):
         sys.exit('Path does not exist: {}'.format(src_path))
@@ -28,23 +62,8 @@ def gitify_installer(src_path, dest_path):
     print('Installing...')
     os.system(full_name + ' --mode unattended')
 
-    # Create repo
-    print('Creating repo...')
-    p = subprocess.Popen('git init',
-                         cwd=installer_dir, shell=True)
-    p.wait()
-
-    # Stage all installer files
-    print('Adding all files...')
-    p = subprocess.Popen('git add *',
-                         cwd=installer_dir, shell=True)
-    p.wait()
-
-    # Commit everything
-    print('Initial commit...')
-    p = subprocess.Popen('git commit -m "Initial commit"',
-                         cwd=installer_dir, shell=True)
-    p.wait()
+    # Create the repo
+    create_repo(installer_dir)
 
     # Delete copy of executable
     print('Removing executable...')
