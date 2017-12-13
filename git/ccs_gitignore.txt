@@ -1,0 +1,7 @@
+Debug/
+.settings/
+.launches/
+../.jxbrowser-data/
+../.metadata/
+../RemoteSystemsTempFiles/
+
