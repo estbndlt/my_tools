@@ -1,0 +1,5 @@
+#define MR_MNU_MAIN_ID 			 0
+#define MR_MNU_MAIN_CONNECT 			 0
+#define MR_MNU_MAIN_GATTRW 			 1
+#define MR_MNU_MAIN_CONNUPDT 			 2
+#define MR_MNU_MAIN_DISCONNECT 			 3
