@@ -27,8 +27,11 @@ def main(args=None):
 
 def parse_args(args=None):
     """ Parses input parameters and displays help message. """
-    script_description = ('This tool will reset all devices used in the '
-                          'config file.')
+    script_description = 'this program runs oad test suites'
+    parser = argparse.ArgumentParser(
+        description=script_description,
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter
+    )
     parser = argparse.ArgumentParser(description=script_description)
     parser.add_argument('--config', metavar='PATH',
                         help='path to config file if different from: '
