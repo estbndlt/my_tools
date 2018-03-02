@@ -76,8 +76,8 @@ set cmdheight=2
 " Display line numbers on the left
 set number
 
-" Highlight current line
-set cursorline       
+" Highlight current line (slow in ConEmu)
+" set cursorline       
 
 " highlight matching [{()}]
 set showmatch              
@@ -130,7 +130,7 @@ nnoremap <C-l> :call ToggleNumber()<CR>
 " Useful functions
 "------------------------------------------------------------------------------
 
-" toggle between number and relativenumber
+" toggle between number and relativenumber (relativenumber slow in ConEmu)
 function! ToggleNumber()
     if(&relativenumber == 1)
         set norelativenumber
