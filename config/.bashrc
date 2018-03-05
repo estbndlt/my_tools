@@ -38,17 +38,13 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias home="cd /c/git"
 alias ble="cd /c/git/ble"
-alias buildx2="cd /c/git/ble/examples/rtos/CC26X2R1_LAUNCHXL/ble5stack/library"
-alias ble3="cd /c/git/ble"
-alias build40="cd /c/git/ble/examples/rtos/CC2640R2_LAUNCHXL/ble5stack/library"
-alias build403="cd /c/git/ble/examples/rtos/CC2640R2_LAUNCHXL/ble5stack/library"
 alias bletest="cd /c/git/ble_test"
-alias bletest3="cd /c/git/ble_test"
 alias oad="cd /c/git/ble_test/scripts/OAD_Automation"
-alias oad3="cd /c/git/ble_test/scripts/OAD_Automation"
 alias ascript="cd /c/git/athena/scripts"
 alias custom="cd /c/git_mine/"
 alias desktop="cd /c/Users/sdTest/Desktop"
+alias current="cd /c/git/lpc_env/15-4keyexchange"
+alias mytools="cd /c/my_git/my_tools"
 
 ###############################################################################
 # windows aliases
@@ -67,6 +63,7 @@ p() {
 ###############################################################################
 # print help
 ###############################################################################
+alias refresh=". ~/.bashrc"
 alias ebashrc="subl ~/.bashrc"
 alias bashrc="cat ~/.bashrc"
 
