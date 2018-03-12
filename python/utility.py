@@ -1,6 +1,52 @@
 import os
+import struct
 
 here = os.path.abspath(os.path.dirname(__file__))
+
+
+def bit_range_mask_uint32_t(a, b):
+    """ Creates a bit range mask from bit a to bit b.
+
+    Args:
+         a: bit index in range [a, b]
+         b: bit index in range [a, b]
+
+    Return:
+        bytes string of the bit mask (use struct.unpack() to convert to int)
+    """
+    if not 0 <= a <= 31 or not 0 <= b <= 31 or a > b:
+        raise Exception('Requires a <= b and 0 <= a,b, <= 31')
+    return struct.pack('>I', (((0x00ffffffff >> (31-b)) >> a) << a))
+
+
+def bit_range_mask_uint16_t(a, b):
+    """ Creates a bit range mask from bit a to bit b.
+
+    Args:
+         a: bit index in range [a, b]
+         b: bit index in range [a, b]
+
+    Return:
+        bytes string of the bit mask (use struct.unpack() to convert to int)
+    """
+    if not 0 <= a <= 15 or not 0 <= b <= 15 or a > b:
+        raise Exception('Requires a <= b and 0 <= a,b, <= 15')
+    return struct.pack('>H', (((0x00ffff >> (15-b)) >> a) << a))
+
+
+def bit_range_mask_uint8_t(a, b):
+    """ Creates a bit range mask from bit a to bit b.
+
+    Args:
+         a: bit index in range [a, b]
+         b: bit index in range [a, b]
+
+    Return:
+        bytes string of the bit mask (use struct.unpack() to convert to int)
+    """
+    if not 0 <= a <= 7 or not 0 <= b <= 7 or a > b:
+        raise Exception('Requires a <= b and 0 <= a,b, <= 7')
+    return struct.pack('>B', (((0x00ff >> (7-b)) >> a) << a))
 
 
 def auto_int(x):
