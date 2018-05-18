@@ -1,0 +1,100 @@
+set nocompatible
+
+filetype indent plugin on
+
+syntax on 
+
+set wildmenu
+
+set hlsearch
+
+set ignorecase
+
+set smartcase
+
+set backspace=indent,eol,start
+
+set autoindent
+
+set nostartofline
+
+set ruler
+
+set confirm
+
+set mouse=a 
+
+set cmdheight=2
+
+set number 
+
+set cursorline
+
+set showmatch
+
+set pastetoggle=<F12>
+
+set shiftwidth=2
+set softtabstop=2
+set expandtab
+
+noremap Y y$
+
+noremap fj :set hlsearch!<CR>
+noremap fh :set incsearch!<CR>
+
+inoremap jj <esc>
+
+noremap <C-h> <C-w>h
+noremap <C-j> <C-w>j 
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l 
+
+noremap gf <C-w>f 
+
+noremap <silent> <C-n> :cn<CR>zv
+noremap <silent> <C-p> :cn<CR>zv
+
+set path+=**
+
+set splitbelow
+set splitright
+
+set laststatus=2
+
+"nmap ccc :!"echo % | pbcopy"<CR>
+
+function! InsertStatuslineColor(mode)
+  if a:mode == 'i'
+    hi statusline guibg=magenta ctermfg=magenta 
+	set statusline=INSERT\|\ \ %F[%{strlen(&fenc)?&fenc:'none'},%{&ff}]%h%m%r%y%=%c,%l/%L\ %P
+  elseif a:mode == 'r'
+    hi statusline guibg=yellow ctermfg=yellow
+	set statusline=REPLACE\|\ \ %F[%{strlen(&fenc)?&fenc:'none'},%{&ff}]%h%m%r%y%=%c,%l/%L\ %P
+  elseif a:mode == 'v'
+	hi statusline guibg=blue ctermfg=blue
+	set statusline=VISUAL\|\ \ %F[%{strlen(&fenc)?&fenc:'none'},%{&ff}]%h%m%r%y%=%c,%l/%L\ %P
+  elseif a:mode == 'n'
+	hi statusline guibg=cyan ctermfg=cyan 
+	set statusline=NORMAL\|\ \ %F[%{strlen(&fenc)?&fenc:'none'},%{&ff}]%h%m%r%y%=%c,%l/%L\ %P
+  else
+	hi statusline guibg=red ctermfg=red 
+	set statusline=UNKNOWN\|\ \ %F[%{strlen(&fenc)?&fenc:'none'},%{&ff}]%h%m%r%y%=%c,%l/%L\ %P
+  endif
+endfunction
+
+au InsertEnter * call InsertStatuslineColor(v:insertmode)
+au InsertChange * call InsertStatuslineColor(v:insertmode)
+au InsertLeave * call InsertStatuslineColor('n')
+au BufEnter * call InsertStatuslineColor('n')
+
+hi DiffAdd    gui=none guifg=NONE ctermbg=gray ctermfg=darkblue
+hi DiffChange gui=none guifg=NONE ctermbg=cyan
+hi DiffDelete gui=none guifg=NONE ctermbg=gray
+hi DiffText   gui=none guifg=NONE ctermbg=red  ctermfg=white
+
+set autoread
+au CursorMoved * checktime
+au CursorMovedI * checktime
+au FileChangedShell * checktime 
+
