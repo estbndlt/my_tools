@@ -1,8 +1,8 @@
-" .vimrc 
+" .vimrc
 " Esteban de la Torre
 
 "------------------------------------------------------------------------------
-" Features 
+" Features
 "
 " These options and commands enable some very useful features in Vim, that
 " no user should have to live without.
@@ -21,7 +21,7 @@ filetype indent plugin on
 syntax on
 
 "------------------------------------------------------------------------------
-" Must have options 
+" Must have options
 "
 " These are highly recommended options.
 "------------------------------------------------------------------------------
@@ -34,14 +34,14 @@ set wildmenu
 set hlsearch
 
 "------------------------------------------------------------------------------
-" Usability options 
+" Usability options
 "
 " These are options that users frequently set in their .vimrc. Some of them
 " change Vim's behaviour in ways which deviate from the true Vi way, but
 " which are considered to add usability. Which, if any, of these options to
 " use is very much a personal preference, but they are harmless.
 "------------------------------------------------------------------------------
- 
+
 " Use case insensitive search, except when using capital letters
 set ignorecase
 set smartcase
@@ -52,7 +52,7 @@ set backspace=indent,eol,start
 " When opening a new line and no filetype-specific indenting is enabled, keep
 " the same indent as the line you're currently on. Useful for READMEs, etc.
 set autoindent
- 
+
 " Stop certain movements from always going to the first character of a line.
 " While this behaviour deviates from that of Vi, it does what most users
 " coming from other editors would expect.
@@ -72,45 +72,45 @@ set confirm
 " Set the command window height to 2 lines, to avoid many cases of having to
 " "press <Enter> to continue"
 set cmdheight=2
- 
+
 " Display line numbers on the left
 set number
 
 " Highlight current line (slow in ConEmu)
-" set cursorline       
+" set cursorline
 
 " highlight matching [{()}]
-set showmatch              
+set showmatch
 
 " Use <F11> to toggle between 'paste' and 'nopaste'
-set pastetoggle=<F11>
+set pastetoggle=<F12>
 
 "------------------------------------------------------------------------------
 " Indentation options
 "
 " Indentation settings according to personal preference.
 "------------------------------------------------------------------------------
- 
+
 " Indentation settings for using 4 spaces instead of tabs.
 " Do not change 'tabstop' from its default value of 8 with this setup.
 set shiftwidth=4
 set softtabstop=4
 set expandtab
- 
+
 
 "------------------------------------------------------------------------------
-" Mappings 
+" Mappings
 "
 " Useful mappings
 "------------------------------------------------------------------------------
- 
+
 " Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy,
 " which is the default
 map Y y$
- 
-" Map <C-L> (redraw screen) to also turn off search highlighting until the
-" next search
-nnoremap <C-L> :nohl<CR><C-L>
+
+" Toggle search highlighting until the
+noremap fj :set hlsearch!<CR>
+noremap fh :set incsearch!<CR>
 
 " Map escape to jj
 inoremap jj <esc>
@@ -124,8 +124,28 @@ nmap <C-l> <C-w>l
 " Call toggle number function
 nnoremap <C-l> :call ToggleNumber()<CR>
 
+" Go to File
+noremap gf <C-w>f
+
+" Grep next/previous
+noremap <silent> <C-n> :cn<CR>zv
+noremap <silent> <C-p> :cn<CR>zv
+
+" Set root path for find command
+set path+=**
+
+" Set default split directions
+set splitbelow
+set splitright
+
+" Show previous command
+set laststatus=2
+
+" Copy file path
+"nmap ccc :!"echo % | pbcopy"<CR>
+
 "------------------------------------------------------------------------------
-" Functions 
+" Functions
 "
 " Useful functions
 "------------------------------------------------------------------------------

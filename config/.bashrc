@@ -29,6 +29,17 @@ alias gcot="git checkout --track"
 alias gus="git reset HEAD --"
 # git assume unchanged
 
+##############################################################################
+# svn aliases
+##############################################################################
+alias sst="svn status"
+alias sstm="svn status . | grep \"^M\""
+alias sstn="svn status . | grep \"^?\""
+alias sco="svn checkout"
+alias sr="svn reset"
+alias srh="svn reset -R ."
+alias scu="svn cleanup . --remove-unversioned"
+
 ###############################################################################
 # cd aliases
 ###############################################################################
@@ -37,18 +48,17 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias home="cd /c/git"
-alias ble="cd /c/git/ble"
-alias bletest="cd /c/git/ble_test"
-alias oad="cd /c/git/ble_test/scripts/OAD_Automation"
-alias ascript="cd /c/git/athena/scripts"
-alias custom="cd /c/git_mine/"
-alias desktop="cd /c/Users/sdTest/Desktop"
+alias dt="cd /c/Users/edelatorre/Desktop"
+alias dl="cd /c/Users/edelatorre/Downloads"
+alias dto="cd /c/Users/edelatorre/OneDrive - Tandem Diabetes Care, Inc/Desktop"
+alias dlo="cd '/c/Users/edelatorre/OneDrive - Tandem Diabetes Care, Inc/Downloads'"
 alias current="cd /c/git/lpc_env/15-4keyexchange"
-alias mytools="cd /c/my_git/my_tools"
+alias tools="cd /c/git/my_tools"
 
 ###############################################################################
 # windows aliases
 ###############################################################################
+alias vv="'/c/Program Files (x86)/Vim/vim81/vim.exe'"
 alias e="explorer ."
 # sublime alias
 # atom alias
@@ -64,12 +74,19 @@ p() {
 # print help
 ###############################################################################
 alias refresh=". ~/.bashrc"
-alias ebashrc="subl ~/.bashrc"
+alias ebrc="vim ~/.bashrc"
 alias bashrc="cat ~/.bashrc"
+alias evrc="vim ~/.vimrc"
+alias vimrc="cat ~/.vimrc"
 
 ###############################################################################
 # proxies
 ###############################################################################
-export no_proxy=.ti.com
-export http_proxy=http://webproxy.ext.ti.com:80/
-export https_proxy=https://webproxy.ext.ti.com:80/
+#export no_proxy=.ti.com
+#export http_proxy=http://webproxy.ext.ti.com:80/
+#export https_proxy=https://webproxy.ext.ti.com:80/
+
+##############################################################################
+# export aliases
+##############################################################################
+# export PATH=$PATH:/env_variable_path
