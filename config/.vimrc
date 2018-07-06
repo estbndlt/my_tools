@@ -85,6 +85,9 @@ set showmatch
 " Use <F11> to toggle between 'paste' and 'nopaste'
 set pastetoggle=<F12>
 
+" Set universal eol file formats
+set ffs=unix,dos,mac
+
 "------------------------------------------------------------------------------
 " Indentation options
 "
@@ -121,9 +124,6 @@ nmap <C-j> <C-w>j
 nmap <C-k> <C-w>k
 nmap <C-l> <C-w>l
 
-" Call toggle number function
-nnoremap <C-l> :call ToggleNumber()<CR>
-
 " Go to File
 noremap gf <C-w>f
 
@@ -159,3 +159,38 @@ function! ToggleNumber()
         set relativenumber
     endif
 endfunc
+
+" Call toggle number function
+nnoremap & :call ToggleNumber()<CR>
+
+" set color when in normal, replace, or insert mode
+function! InsertStatuslineColor(mode)
+  if a:mode == 'i'
+    hi statusline guibg=magenta ctermfg=magenta
+	set statusline=INSERT\|\ \ %F[%{strlen(&fenc)?&fenc:'none'},%{&ff}]%h%m%r%y%=%c,%l/%L\ %P
+  elseif a:mode == 'r'
+    hi statusline guibg=yellow ctermfg=yellow
+	set statusline=REPLACE\|\ \ %F[%{strlen(&fenc)?&fenc:'none'},%{&ff}]%h%m%r%y%=%c,%l/%L\ %P
+  elseif a:mode == 'v'
+	hi statusline guibg=blue ctermfg=blue
+	set statusline=VISUAL\|\ \ %F[%{strlen(&fenc)?&fenc:'none'},%{&ff}]%h%m%r%y%=%c,%l/%L\ %P
+  elseif a:mode == 'n'
+	hi statusline guibg=cyan ctermfg=cyan
+	set statusline=NORMAL\|\ \ %F[%{strlen(&fenc)?&fenc:'none'},%{&ff}]%h%m%r%y%=%c,%l/%L\ %P
+  else
+	hi statusline guibg=red ctermfg=red
+	set statusline=UNKNOWN\|\ \ %F[%{strlen(&fenc)?&fenc:'none'},%{&ff}]%h%m%r%y%=%c,%l/%L\ %P
+  endif
+endfunction
+
+au InsertEnter * call InsertStatuslineColor(v:insertmode)
+au InsertChange * call InsertStatuslineColor(v:insertmode)
+au InsertLeave * call InsertStatuslineColor('n')
+au BufEnter * call InsertStatuslineColor('n')
+
+" refresh buffer if changes are detected
+set autoread
+au CursorMoved * checktime
+au CursorMovedI * checktime
+au FileChangedShell * checktime
+

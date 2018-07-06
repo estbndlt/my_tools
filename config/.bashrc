@@ -43,22 +43,33 @@ alias scu="svn cleanup . --remove-unversioned"
 ###############################################################################
 # cd aliases
 ###############################################################################
+# get the right c drive prefix
+if [[ $(cat /proc/version | awk '{ print $1 }') =~ CYGWIN ]]; then
+    export CDRIVE="/cygdrive/c"
+elif [[ $(cat /proc/version | awk '{ print $1 }') =~ MINGW ]]; then
+    export CDRIVE="/c"
+elif [[ $(cat /proc/version | awk '{ print $1 }') =~ Linux ]]; then
+    export CDRIVE="/mnt/c"
+fi
+
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
-alias home="cd /c/git"
-alias dt="cd /c/Users/edelatorre/Desktop"
-alias dl="cd /c/Users/edelatorre/Downloads"
-alias dto="cd /c/Users/edelatorre/OneDrive - Tandem Diabetes Care, Inc/Desktop"
-alias dlo="cd '/c/Users/edelatorre/OneDrive - Tandem Diabetes Care, Inc/Downloads'"
-alias current="cd /c/git/lpc_env/15-4keyexchange"
-alias tools="cd /c/git/my_tools"
+alias ghome="cd ${CDRIVE}/git"
+alias shome="cd ${CDRIVE}/svn"
+alias dev="cd ${CDRIVE}/svn/dev"
+alias dt="cd ${CDRIVE}/Users/edelatorre/Desktop"
+alias dl="cd ${CDRIVE}/Users/edelatorre/Downloads"
+alias dto="cd ${CDRIVE}/Users/edelatorre/OneDrive - Tandem Diabetes Care, Inc/Desktop"
+alias dlo="cd '${CDRIVE}/Users/edelatorre/OneDrive - Tandem Diabetes Care, Inc/Downloads'"
+alias current="cd ${CDRIVE}/git/lpc_env/15-4keyexchange"
+alias tools="cd ${CDRIVE}/git/my_tools"
 
 ###############################################################################
 # windows aliases
 ###############################################################################
-alias vv="'/c/Program Files (x86)/Vim/vim81/vim.exe'"
+alias ls="ls -p"
 alias e="explorer ."
 # sublime alias
 # atom alias
@@ -90,3 +101,14 @@ alias vimrc="cat ~/.vimrc"
 # export aliases
 ##############################################################################
 # export PATH=$PATH:/env_variable_path
+
+# svn editor
+export SVN_EDITOR="vim"
+
+# Override the default IAR paths... can't auto detect on Windows 7.
+export TNDM_IAR_EW_ARM_7501_10273='C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3'
+export TNDM_IAR_EW_MSP_430_6201='C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.0'
+
+# command line info to display
+#export PS1+="\e[31m($(git branch 2>/dev/null | grep '^*' | colrm 1 2)) \e[91m~\n\e[97m$ "
+#export PS1="\e[94m\u@\H \e[96m\w \e[31m($(git branch 2>/dev/null | grep '^*' | colrm 1 2)) \e[91m~\n\e[97m$ "
