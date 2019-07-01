@@ -45,40 +45,52 @@ alias scu="svn cleanup . --remove-unversioned"
 ###############################################################################
 # get the right c drive prefix
 if [[ $(cat /proc/version | awk '{ print $1 }') =~ CYGWIN ]]; then
-    export CDRIVE="/cygdrive/c"
+    export CDRIVE='/cygdrive/c'
 elif [[ $(cat /proc/version | awk '{ print $1 }') =~ MINGW ]]; then
-    export CDRIVE="/c"
+    export CDRIVE='/c'
 elif [[ $(cat /proc/version | awk '{ print $1 }') =~ Linux ]]; then
-    export CDRIVE="/mnt/c"
+    export CDRIVE='/mnt/c'
 fi
 
+# save the username
+export USERNAME='edelatorre'
+
+# navigation
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
+
+# repos
 alias ghome="cd ${CDRIVE}/git"
 alias shome="cd ${CDRIVE}/svn"
+
+# custom paths
 alias dev="cd ${CDRIVE}/svn/dev"
-alias dt="cd ${CDRIVE}/Users/edelatorre/Desktop"
-alias dl="cd ${CDRIVE}/Users/edelatorre/Downloads"
-alias dto="cd ${CDRIVE}/Users/edelatorre/OneDrive - Tandem Diabetes Care, Inc/Desktop"
-alias dlo="cd '${CDRIVE}/Users/edelatorre/OneDrive - Tandem Diabetes Care, Inc/Downloads'"
-alias current="cd ${CDRIVE}/git/lpc_env/15-4keyexchange"
+alias devb="cd ${CDRIVE}/svn/dev_branches"
+alias dt="cd ${CDRIVE}/Users/${USERNAME}/Desktop"
+alias dl="cd ${CDRIVE}/Users/${USERNAME}/Downloads"
+alias dto="cd ${CDRIVE}/Users/${USERNAME}/OneDrive\ -\ Tandem\ Diabetes\ Care,\ Inc/Desktop"
+alias dlo="cd ${CDRIVE}/Users/${USERNAME}/OneDrive\ -\ Tandem\ Diabetes\ Care,\ Inc/Downloads"
 alias tools="cd ${CDRIVE}/git/my_tools"
+alias btool="cd ${CDRIVE}/git/britool"
+alias qmk="cd ${CDRIVE}/git/qmk_firmware"
+
+###############################################################################
+# linux aliases
+###############################################################################
+alias ls="ls -p"
 
 ###############################################################################
 # windows aliases
 ###############################################################################
-alias ls="ls -p"
 alias e="explorer ."
-# sublime alias
-# atom alias
 
 ###############################################################################
 # windows functions
 ###############################################################################
 p() {
-    "C:\Program Files\PuTTY\putty.exe" "-serial" "COM$@" &
+    "putty.exe" "-serial" "COM$@" "-sercfg 115200,8,n,1,X" &
 }
 
 ###############################################################################
@@ -103,7 +115,7 @@ alias vimrc="cat ~/.vimrc"
 # export PATH=$PATH:/env_variable_path
 
 # svn editor
-export SVN_EDITOR="vim"
+export SVN_EDITOR='vim'
 
 # Override the default IAR paths... can't auto detect on Windows 7.
 export TNDM_IAR_EW_ARM_7501_10273='C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3'
@@ -112,3 +124,11 @@ export TNDM_IAR_EW_MSP_430_6201='C:\Program Files (x86)\IAR Systems\Embedded Wor
 # command line info to display
 #export PS1+="\e[31m($(git branch 2>/dev/null | grep '^*' | colrm 1 2)) \e[91m~\n\e[97m$ "
 #export PS1="\e[94m\u@\H \e[96m\w \e[31m($(git branch 2>/dev/null | grep '^*' | colrm 1 2)) \e[91m~\n\e[97m$ "
+
+# display git branches in cygwin
+parse_git_branch() {
+   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+if [[ $(cat /proc/version | awk '{ print $1 }') =~ CYGWIN ]]; then
+    export PS1="\[\033[01;32m\]\u@\h\[\033[01;34m\] \w\[\033[31m\]\$(parse_git_branch)\[\033[00m\] $ "
+fi
