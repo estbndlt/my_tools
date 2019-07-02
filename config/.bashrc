@@ -89,8 +89,16 @@ alias e="explorer ."
 ###############################################################################
 # windows functions
 ###############################################################################
+# NOTE: The path to putty must be in the environment variables
+
+# "p 30" will start a serial terminal with COM30
 p() {
     "putty.exe" "-serial" "COM$@" "-sercfg" "115200,8,n,1,X" &
+}
+
+# "pl wombat_fixture" will start a session saved with that name
+pl() {
+    "putty.exe" "-load" "$@" &
 }
 
 ###############################################################################
