@@ -63,11 +63,11 @@ alias .....="cd ../../../.."
 
 # repos
 alias ghome="cd ${CDRIVE}/git"
-alias shome="cd ${CDRIVE}/svn"
+alias shome="cd ${CDRIVE}/SVN"
 
 # custom paths
-alias dev="cd ${CDRIVE}/svn/dev"
-alias devb="cd ${CDRIVE}/svn/dev_branches"
+alias dev="cd ${CDRIVE}/SVN/dev"
+alias devb="cd ${CDRIVE}/SVN/dev_branches"
 alias dt="cd ${CDRIVE}/Users/${USERNAME}/Desktop"
 alias dl="cd ${CDRIVE}/Users/${USERNAME}/Downloads"
 alias dto="cd ${CDRIVE}/Users/${USERNAME}/OneDrive\ -\ Tandem\ Diabetes\ Care,\ Inc/Desktop"
@@ -84,7 +84,7 @@ alias ls="ls -p"
 ###############################################################################
 # windows aliases
 ###############################################################################
-alias e="explorer ."
+alias e="explorer.exe ."
 
 ###############################################################################
 # windows functions
@@ -104,7 +104,7 @@ pl() {
 ###############################################################################
 # print help
 ###############################################################################
-alias refresh=". ~/.bashrc"
+alias refresh="cp ${CDRIVE}/git/my_tools/config/.bashrc ~/.bashrc; source ~/.bashrc; cp ${CDRIVE}/git/my_tools/config/.vimrc ~/.vimrc"
 alias ebrc="vim ~/.bashrc"
 alias bashrc="cat ~/.bashrc"
 alias evrc="vim ~/.vimrc"
@@ -137,6 +137,6 @@ export TNDM_IAR_EW_MSP_430_6201='C:\Program Files (x86)\IAR Systems\Embedded Wor
 parse_git_branch() {
    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
-if [[ $(cat /proc/version | awk '{ print $1 }') =~ CYGWIN ]]; then
+if [[ $(cat /proc/version | awk '{ print $1 }') =~ CYGWIN|Linux ]]; then
     export PS1="\[\033[01;32m\]\u@\h\[\033[01;34m\] \w\[\033[31m\]\$(parse_git_branch)\[\033[00m\] $ "
 fi

@@ -193,4 +193,3 @@ set autoread
 au CursorMoved * checktime
 au CursorMovedI * checktime
 au FileChangedShell * checktime
-
