@@ -82,8 +82,8 @@ set number
 " highlight matching [{()}]
 set showmatch
 
-" Use <F11> to toggle between 'paste' and 'nopaste'
-set pastetoggle=<F12>
+" Use <F2> to toggle between 'paste' and 'nopaste'
+set pastetoggle=<F2>
 
 " Set universal eol file formats
 set ffs=unix,dos,mac
@@ -193,3 +193,6 @@ set autoread
 au CursorMoved * checktime
 au CursorMovedI * checktime
 au FileChangedShell * checktime
+
+" remove trailing whitespace on save
+au BufWritePre * %s/\s\+$//e
