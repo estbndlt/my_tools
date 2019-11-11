@@ -104,7 +104,10 @@ pl() {
 ###############################################################################
 # print help
 ###############################################################################
-alias refresh="cp ${CDRIVE}/git/my_tools/config/.bashrc ~/.bashrc; source ~/.bashrc; cp ${CDRIVE}/git/my_tools/config/.vimrc ~/.vimrc"
+alias refresh="cp ${CDRIVE}/git/embedded/scm/git/config/win_git_bash/dot_bashrc ~/.bashrc;\
+    cat ${CDRIVE}/git/my_tools/config/.bashrc >> ~/.bashrc;\
+    source ~/.bashrc;\
+    cp ${CDRIVE}/git/my_tools/config/.vimrc ~/.vimrc;"
 alias ebrc="vim ~/.bashrc"
 alias bashrc="cat ~/.bashrc"
 alias evrc="vim ~/.vimrc"
@@ -140,3 +143,4 @@ parse_git_branch() {
 if [[ $(cat /proc/version | awk '{ print $1 }') =~ CYGWIN|Linux ]]; then
     export PS1="\[\033[01;32m\]\u@\h\[\033[01;34m\] \w\[\033[31m\]\$(parse_git_branch)\[\033[00m\] $ "
 fi
+
