@@ -105,9 +105,10 @@ pl() {
 # print help
 ###############################################################################
 alias refresh="cp ${CDRIVE}/git/embedded/scm/git/config/win_git_bash/dot_bashrc ~/.bashrc;\
-    cat ${CDRIVE}/git/my_tools/config/.bashrc >> ~/.bashrc;\
-    source ~/.bashrc;\
-    cp ${CDRIVE}/git/my_tools/config/.vimrc ~/.vimrc;"
+cat ${CDRIVE}/git/my_tools/config/.bashrc >> ~/.bashrc;\
+sed -i 's/\r$//g' ~/.bashrc;\
+source ~/.bashrc;\
+cp ${CDRIVE}/git/my_tools/config/.vimrc ~/.vimrc;"
 alias ebrc="vim ~/.bashrc"
 alias bashrc="cat ~/.bashrc"
 alias evrc="vim ~/.vimrc"
