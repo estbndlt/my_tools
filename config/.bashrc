@@ -112,6 +112,7 @@ cp ${CDRIVE}/git/embedded/scm/git/config/win_git_bash/dot_gitconfig ~/.gitconfig
 sed -i 's/Marko Hyvonen/Esteban de la Torre/g' ~/.gitconfig;\
 sed -i 's/mhyvonen/edelatorre/g' ~/.gitconfig;\
 sed -i 's/nano/vim/g' ~/.gitconfig;\
+cp ${CDRIVE}/git/my_tools/config/.inputrc ~/.inputrc;\
 cp ${CDRIVE}/git/my_tools/config/.vimrc ~/.vimrc;"
 alias ebrc="vim ~/.bashrc"
 alias bashrc="cat ~/.bashrc"
