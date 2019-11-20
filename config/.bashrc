@@ -9,7 +9,9 @@ alias gb="git branch"
 alias gbav="git branch -avv"
 alias gm="git merge"
 alias gp="git pull"
+alias gpr="git pull --rebase"
 alias gpod="git pull origin develop"
+alias gpom="git pull origin develop"
 alias gl="git log --all --decorate --oneline --graph"
 alias gpp="git push"
 alias gcm="git commit -m"
@@ -27,7 +29,6 @@ alias gcob="git checkout -b"
 alias gcod="git checkout develop"
 alias gcot="git checkout --track"
 alias gus="git reset HEAD --"
-# git assume unchanged
 
 ##############################################################################
 # svn aliases
@@ -67,14 +68,12 @@ alias shome="cd ${CDRIVE}/SVN"
 
 # custom paths
 alias dev="cd ${CDRIVE}/SVN/dev"
-alias devb="cd ${CDRIVE}/SVN/dev_branches"
+alias emb="cd ${CDRIVE}/git/embedded"
 alias dt="cd ${CDRIVE}/Users/${USERNAME}/Desktop"
 alias dl="cd ${CDRIVE}/Users/${USERNAME}/Downloads"
 alias dto="cd ${CDRIVE}/Users/${USERNAME}/OneDrive\ -\ Tandem\ Diabetes\ Care,\ Inc/Desktop"
 alias dlo="cd ${CDRIVE}/Users/${USERNAME}/OneDrive\ -\ Tandem\ Diabetes\ Care,\ Inc/Downloads"
 alias tools="cd ${CDRIVE}/git/my_tools"
-alias btool="cd ${CDRIVE}/git/britool"
-alias qmk="cd ${CDRIVE}/git/qmk_firmware"
 
 ###############################################################################
 # linux aliases
