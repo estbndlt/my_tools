@@ -25,8 +25,14 @@ alias gcob="git checkout -b"
 alias gcom="git checkout master"
 alias gcot="git checkout --track"
 
+# git checkout remote branch
 gconb() {
     git checkout -b "$1" "origin/$1"
+}
+
+# git log compare branch with master
+glom() {
+    git lg ^origin/master "$1"
 }
 ##############################################################################
 # svn aliases
