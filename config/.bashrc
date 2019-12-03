@@ -6,7 +6,7 @@ alias ga="git add"
 alias gs="git status"
 alias gd="git diff"
 alias gdom="git diff origin/master"
-alias gf="git fetch"
+alias gf="git fetch --prune"
 alias gr="git rebase"
 alias grom="git rebase --ignore-date origin/master"
 alias gb="git branch"
@@ -25,6 +25,9 @@ alias gcob="git checkout -b"
 alias gcom="git checkout master"
 alias gcot="git checkout --track"
 
+gconb() {
+    git checkout -b "$1" "origin/$1"
+}
 ##############################################################################
 # svn aliases
 ##############################################################################
