@@ -27,7 +27,7 @@ alias gcot="git checkout --track"
 
 # git rebase for squashing
 gri() {
-    "git rebase -i HEAD~$1"
+    git rebase -i "HEAD~$1"
 }
 
 # git checkout remote branch
