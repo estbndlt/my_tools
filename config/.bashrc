@@ -25,6 +25,11 @@ alias gcob="git checkout -b"
 alias gcom="git checkout master"
 alias gcot="git checkout --track"
 
+# git rebase for squashing
+gri() {
+    "git rebase -i HEAD~$1"
+}
+
 # git checkout remote branch
 gconb() {
     git checkout -b "$1" "origin/$1"
