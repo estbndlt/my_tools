@@ -1,7 +1,6 @@
 ###############################################################################
 # git aliases
 ###############################################################################
-alias g="git"
 alias ga="git add"
 alias gs="git status"
 alias gd="git diff"
@@ -20,10 +19,7 @@ alias gcl="git clean -dxf"
 alias gcr="git clean -dxf && git reset --hard"
 alias gsp="git stash pop"
 alias gst="git stash"
-alias gco="git checkout"
-alias gcob="git checkout -b"
 alias gcom="git checkout master"
-alias gcot="git checkout --track"
 
 # git rebase for squashing
 gri() {
@@ -64,6 +60,9 @@ fi
 
 # save the username
 export USERNAME='edelatorre'
+
+# save the full name
+export FULLNAME='Esteban de la Torre'
 
 # navigation
 alias ..="cd .."
@@ -117,9 +116,10 @@ cat ${CDRIVE}/git/my_tools/config/.bashrc >> ~/.bashrc;\
 sed -i 's/\r$//g' ~/.bashrc;\
 source ~/.bashrc;\
 cp ${CDRIVE}/git/embedded/scm/git/config/win_git_bash/dot_gitconfig ~/.gitconfig;\
-sed -i 's/Marko Hyvonen/Esteban de la Torre/g' ~/.gitconfig;\
-sed -i 's/mhyvonen/edelatorre/g' ~/.gitconfig;\
+sed -i 's/Marko Hyvonen/${FULLNAME}/g' ~/.gitconfig;\
+sed -i 's/mhyvonen/${USERNAME}/g' ~/.gitconfig;\
 sed -i 's/nano/vim/g' ~/.gitconfig;\
+sed -i 's/\r$//g' ~/.gitconfig;\
 cp ${CDRIVE}/git/my_tools/config/.inputrc ~/.inputrc;\
 cp ${CDRIVE}/git/my_tools/config/.vimrc ~/.vimrc;"
 alias ebrc="vim ~/.bashrc"
