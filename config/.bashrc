@@ -1,5 +1,37 @@
 ###############################################################################
-# git aliases
+# common variables
+###############################################################################
+# get the right c drive prefix
+if [[ $(cat /proc/version | awk '{ print $1 }') =~ CYGWIN ]]; then
+    export CDRIVE='/cygdrive/c'
+elif [[ $(cat /proc/version | awk '{ print $1 }') =~ MINGW ]]; then
+    export CDRIVE='/c'
+elif [[ $(cat /proc/version | awk '{ print $1 }') =~ Linux ]]; then
+    export CDRIVE='/mnt/c'
+fi
+
+###############################################################################
+# custom variables (UPDATE HERE)
+###############################################################################
+# save the username (required to update .gitconfig from embedded repo)
+export USERNAME='edelatorre'
+
+# save the full name (required to update .gitconfig from embedded repo)
+export FULLNAME='Esteban de la Torre'
+
+# custom path variables (required to work with refresh())
+export EMBEDDED="${CDRIVE}/git/embedded"
+export EMBEDDEDCONFIG="${EMBEDDED}/scm/git/config/win_git_bash"
+
+# paths to config files (required to work with refresh())
+export MYCONFIGPATH="${CDRIVE}/git/my_tools/config"
+export MYBASHRCPATH="${MYCONFIGPATH}/.bashrc"
+export MYGITCONFIGPATH=""
+export MYINPUTRCPATH="${MYCONFIGPATH}/.inputrc"
+export MYVIMRCPATH="${MYCONFIGPATH}/.vimrc"
+
+###############################################################################
+# git aliases/functions
 ###############################################################################
 alias ga="git add"
 alias gs="git status"
@@ -47,24 +79,9 @@ alias srh="svn reset -R ."
 alias scu="svn cleanup . --remove-unversioned"
 
 ###############################################################################
-# cd aliases
+# navigation aliases
 ###############################################################################
-# get the right c drive prefix
-if [[ $(cat /proc/version | awk '{ print $1 }') =~ CYGWIN ]]; then
-    export CDRIVE='/cygdrive/c'
-elif [[ $(cat /proc/version | awk '{ print $1 }') =~ MINGW ]]; then
-    export CDRIVE='/c'
-elif [[ $(cat /proc/version | awk '{ print $1 }') =~ Linux ]]; then
-    export CDRIVE='/mnt/c'
-fi
-
-# save the username
-export USERNAME='edelatorre'
-
-# save the full name
-export FULLNAME='Esteban de la Torre'
-
-# navigation
+# quick cd
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
@@ -109,23 +126,85 @@ pl() {
 }
 
 ###############################################################################
-# print help
+# config file aliases/functions
 ###############################################################################
-alias refresh="cp ${CDRIVE}/git/embedded/scm/git/config/win_git_bash/dot_bashrc ~/.bashrc;\
-cat ${CDRIVE}/git/my_tools/config/.bashrc >> ~/.bashrc;\
-sed -i 's/\r$//g' ~/.bashrc;\
-source ~/.bashrc;\
-cp ${CDRIVE}/git/embedded/scm/git/config/win_git_bash/dot_gitconfig ~/.gitconfig;\
-sed -i 's/Marko Hyvonen/${FULLNAME}/g' ~/.gitconfig;\
-sed -i 's/mhyvonen/${USERNAME}/g' ~/.gitconfig;\
-sed -i 's/nano/vim/g' ~/.gitconfig;\
-sed -i 's/\r$//g' ~/.gitconfig;\
-cp ${CDRIVE}/git/my_tools/config/.inputrc ~/.inputrc;\
-cp ${CDRIVE}/git/my_tools/config/.vimrc ~/.vimrc;"
+# gets the latest config files from the paths specified
+refresh() {
+    ###########################################################################
+    # bashrc
+    ###########################################################################
+    # copy the .bashrc given by the embedded repo
+    cp ${EMBEDDEDCONFIG}/dot_bashrc ~/.bashrc
+
+    # append a custom .bashrc
+    if [ -z ${MYBASHRCPATH} ]
+    then
+        echo "no custom .bashrc path given, skipping"
+    else
+        cat ${MYBASHRCPATH} >> ~/.bashrc;
+        sed -i 's/\r$//g' ~/.bashrc;
+    fi
+
+    # use the new .bashrc you just made
+    source ~/.bashrc
+
+    ###########################################################################
+    # gitconfig
+    ###########################################################################
+    # copy the .gitconfig given by the embedded repo
+    cp ${EMBEDDEDCONFIG}/dot_gitconfig ~/.gitconfig
+
+    # update the .gitconfig with your own preferences
+    sed -i 's/Marko Hyvonen/${FULLNAME}/g' ~/.gitconfig
+    sed -i 's/mhyvonen/${USERNAME}/g' ~/.gitconfig
+    sed -i 's/nano/vim/g' ~/.gitconfig
+    sed -i 's/\r$//g' ~/.gitconfig
+
+    # append a custom .gitconfig
+    if [ -z ${MYGITCONFIGPATH} ]
+    then
+        echo "no custom .gitconfig path given, skipping"
+    else
+        cat ${MYGITCONFIGPATH} >> ~/.gitconfig;
+        sed -i 's/\r$//g' ~/.gitconfig;
+    fi
+
+    ###########################################################################
+    # inputrc
+    ###########################################################################
+    # copy a custom .inputrc
+    if [ -z ${MYINPUTRCPATH} ]
+    then
+        echo "no custom .inputrc path given, skipping"
+    else
+        cp ${MYINPUTRCPATH} ~/.inputrc;
+        sed -i 's/\r$//g' ~/.inputrc;
+    fi
+
+    ###########################################################################
+    # vimrc
+    ###########################################################################
+    # copy a custom .vimrc
+    if [ -z ${MYVIMRCPATH} ]
+    then
+        echo "no custom .vimrc path given, skipping"
+    else
+        cp ${MYVIMRCPATH} ~/.vimrc;
+        sed -i 's/\r$//g' ~/.vimrc;
+    fi
+}
+
+# edit config files
 alias ebrc="vim ~/.bashrc"
-alias bashrc="cat ~/.bashrc"
 alias evrc="vim ~/.vimrc"
+alias eirc="vim ~/.inputrc"
+alias egcf="vim ~/.gitconfig"
+
+# print config files
+alias bashrc="cat ~/.bashrc"
 alias vimrc="cat ~/.vimrc"
+alias inputrc="cat ~/.inputrc"
+alias gitconfig="cat ~/.gitconfig"
 
 ###############################################################################
 # proxies
