@@ -14,10 +14,10 @@ fi
 # custom variables (UPDATE HERE)
 ###############################################################################
 # save the username (required to update .gitconfig from embedded repo)
-export USERNAME='edelatorre'
+export USERNAME="edelatorre"
 
 # save the full name (required to update .gitconfig from embedded repo)
-export FULLNAME='Esteban de la Torre'
+export FULLNAME="Esteban de la Torre"
 
 # custom path variables (required to work with refresh())
 export EMBEDDED="${CDRIVE}/git/embedded"
@@ -155,10 +155,10 @@ refresh() {
     cp ${EMBEDDEDCONFIG}/dot_gitconfig ~/.gitconfig
 
     # update the .gitconfig with your own preferences
-    sed -i 's/Marko Hyvonen/${FULLNAME}/g' ~/.gitconfig
-    sed -i 's/mhyvonen/${USERNAME}/g' ~/.gitconfig
-    sed -i 's/nano/vim/g' ~/.gitconfig
-    sed -i 's/\r$//g' ~/.gitconfig
+    sed -i "s/Marko Hyvonen/${FULLNAME}/g" ~/.gitconfig
+    sed -i "s/mhyvonen/${USERNAME}/g" ~/.gitconfig
+    sed -i "s/nano/vim/g" ~/.gitconfig
+    sed -i "s/\r$//g" ~/.gitconfig
 
     # append a custom .gitconfig
     if [ -z ${MYGITCONFIGPATH} ]
@@ -166,7 +166,7 @@ refresh() {
         echo "no custom .gitconfig path given, skipping"
     else
         cat ${MYGITCONFIGPATH} >> ~/.gitconfig;
-        sed -i 's/\r$//g' ~/.gitconfig;
+        sed -i "s/\r$//g" ~/.gitconfig;
     fi
 
     ###########################################################################
@@ -178,7 +178,7 @@ refresh() {
         echo "no custom .inputrc path given, skipping"
     else
         cp ${MYINPUTRCPATH} ~/.inputrc;
-        sed -i 's/\r$//g' ~/.inputrc;
+        sed -i "s/\r$//g" ~/.inputrc;
     fi
 
     ###########################################################################
@@ -190,7 +190,7 @@ refresh() {
         echo "no custom .vimrc path given, skipping"
     else
         cp ${MYVIMRCPATH} ~/.vimrc;
-        sed -i 's/\r$//g' ~/.vimrc;
+        sed -i "s/\r$//g" ~/.vimrc;
     fi
 }
 
