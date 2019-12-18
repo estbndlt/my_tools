@@ -157,7 +157,7 @@ refresh() {
     # update the .gitconfig with your own preferences
     sed -i "s/Marko Hyvonen/${FULLNAME}/g" ~/.gitconfig
     sed -i "s/mhyvonen/${USERNAME}/g" ~/.gitconfig
-    sed -i "s/nano/vim/g" ~/.gitconfig
+    sed -i "s/editor\s=\s.*notepad.*$/ editor = vim/g" ~/.gitconfig
     sed -i "s/\r$//g" ~/.gitconfig
 
     # append a custom .gitconfig
