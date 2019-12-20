@@ -236,9 +236,9 @@ prepend_path()
 }
 
 # Make git bash the default git
-# export PATH="${CDRIVE}/Program Files/Git/cmd:${PATH}"
-export GITPATH="${CDRIVE}/Program Files/Git/cmd"
-prepend_path PATH ${GITPATH}
+export PATH="${CDRIVE}/Program Files/Git/cmd:${PATH}"
+# export GITPATH=${CDRIVE}/Program\ Files/Git/cmd
+# prepend_path PATH ${GITPATH}
 
 # svn editor
 export SVN_EDITOR='vim'
@@ -246,6 +246,9 @@ export SVN_EDITOR='vim'
 # Override the default IAR paths... can't auto detect on Windows 7.
 export TNDM_IAR_EW_ARM_7501_10273='C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.3'
 export TNDM_IAR_EW_MSP_430_6201='C:\Program Files (x86)\IAR Systems\Embedded Workbench 7.0'
+
+# Remove path duplicates in PATH
+PATH=$(echo $PATH | awk -v RS=: -v ORS=: '!($0 in a) {a[$0]; print}')
 
 # command line info to display
 #export PS1+="\e[31m($(git branch 2>/dev/null | grep '^*' | colrm 1 2)) \e[91m~\n\e[97m$ "
