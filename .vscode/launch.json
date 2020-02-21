@@ -5,10 +5,30 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "(gdb) Run Wombat UT",
+            "name": "(gdb) Run Wombat Control IQ UT",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/build/wombat_2_0.ninja/bin/${fileBasenameNoExtension}.exe",
+            "program": "${workspaceFolder}/build/wombat_2_0_ciq.ninja/bin/${fileBasenameNoExtension}.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": true,
+            "MIMode": "gdb",
+            "miDebuggerPath": "C:\\cygwin\\bin\\gdb.exe",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": false
+                }
+            ]
+        },
+        {
+            "name": "(gdb) Run Wombat Basal IQ UT",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/wombat_2_0_biq.ninja/bin/${fileBasenameNoExtension}.exe",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
@@ -45,35 +65,15 @@
             ]
         },
         {
-            "name": "(gdb) Run Centaur 5.3 UT",
+            "name": "(gdb) Run Bolusaurus 6.4 UT",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/build/centaur_5_3.ninja/bin/${fileBasenameNoExtension}.exe",
+            "program": "${workspaceFolder}/build/bolusaurus_6_4.ninja/bin/${fileBasenameNoExtension}.exe",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
-            "externalConsole": false,
-            "MIMode": "gdb",
-            "miDebuggerPath": "C:\\cygwin\\bin\\gdb.exe",
-            "setupCommands": [
-                {
-                    "description": "Enable pretty-printing for gdb",
-                    "text": "-enable-pretty-printing",
-                    "ignoreFailures": false
-                }
-            ]
-        },
-        {
-            "name": "(gdb) Run Centaur PLGS 6.3 UT",
-            "type": "cppdbg",
-            "request": "launch",
-            "program": "${workspaceFolder}/build/centaur_plgs_6_3.ninja/bin/${fileBasenameNoExtension}.exe",
-            "args": [],
-            "stopAtEntry": false,
-            "cwd": "${workspaceFolder}",
-            "environment": [],
-            "externalConsole": false,
+            "externalConsole": true,
             "MIMode": "gdb",
             "miDebuggerPath": "C:\\cygwin\\bin\\gdb.exe",
             "setupCommands": [
@@ -93,7 +93,27 @@
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
-            "externalConsole": false,
+            "externalConsole": true,
+            "MIMode": "gdb",
+            "miDebuggerPath": "C:\\cygwin\\bin\\gdb.exe",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": false
+                }
+            ]
+        },
+        {
+            "name": "(gdb) Run Narwhal B.3 Pro UT",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/narwhal_b_3_pro.ninja/bin/${fileBasenameNoExtension}.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": true,
             "MIMode": "gdb",
             "miDebuggerPath": "C:\\cygwin\\bin\\gdb.exe",
             "setupCommands": [

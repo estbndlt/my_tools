@@ -52,7 +52,6 @@ alias gcr="git clean -dxf && git reset --hard"
 alias gsp="git stash pop"
 alias gst="git stash"
 alias gcom="git checkout master"
-alias glom="git lg ^origin/master $(git rev-parse --abbrev-ref HEAD)"
 
 # git rebase for squashing
 gri() {
@@ -62,6 +61,11 @@ gri() {
 # git checkout remote branch
 gconb() {
     git checkout -b "$1" "origin/$1"
+}
+
+# git log compare branch with master
+glom() {
+    git lg ^origin/master "$(git rev-parse --abbrev-ref HEAD)"
 }
 
 ##############################################################################
