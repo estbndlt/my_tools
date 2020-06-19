@@ -1,0 +1,128 @@
+{
+    // Suppress some git warnings
+    "gitlens.advanced.messages": {
+        "suppressLineUncommittedWarning": true,
+        "suppressShowKeyBindingsNotice": true
+    },
+
+    // Git Bash in VSCode terminal
+    // "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe",
+
+    // Cygwin, with chere package installed in VSCode terminal
+    // "terminal.integrated.shell.windows": "C:\\cygwin\\bin\\bash.exe",
+    // "terminal.integrated.shellArgs.windows": ["/bin/xhere", "/bin/bash"],
+    // "terminal.integrated.shellArgs.windows": ["--login", "-i"],
+    // "terminal.integrated.cwd": "workspaceRoot",
+
+    // Shows the full file path andf root dfirectory at the top
+    "window.title": "${activeEditorLong}${separator}${rootName}",
+
+    // Shows the bottom status bar
+    "workbench.statusBar.visible": true,
+
+    "window.menuBarVisibility": "default",
+
+    // Trim trailing whitespace
+    "files.trimTrailingWhitespace": true,
+
+    // Set default line endings
+    "files.eol": "\n",
+
+    // The number of spaces a tab is equal to. This setting is overridden
+    // based on the file contents when `editor.detectIndentation` is true.
+    "editor.tabSize": 4,
+
+    // Insert spaces when pressing Tab. This setting is overriden
+    // based on the file contents when `editor.detectIndentation` is true.
+    "editor.insertSpaces": true,
+
+    // When opening a file, `editor.tabSize` and `editor.insertSpaces`
+    // will be detected based on the file contents. Set to false to keep
+    // the values you've explicitly set, above.
+    "editor.detectIndentation": false,
+
+    // Breadcrumbs
+    "breadcrumbs.enabled": true,
+
+    // Default window zoom level
+    "window.zoomLevel": 0,
+
+    // Vertical rulers
+    "editor.rulers": [79,119],
+
+    // Whether auto refreshing is enabled
+    "svn.autorefresh": false,
+
+    // Whether auto refreshing is enabled.
+    "git.autorefresh": false,
+
+    // Regex for TODO highlight
+    "todohighlight.isCaseSensitive": false,
+    // "todohighlight.keywordsPattern": "(//|/\*).*(todo|note)",
+    "todohighlight.defaultStyle": {
+        "color": "black",
+        "backgroundColor": "#fdf6e3",
+        "overviewRulerColor": "#fdf6e3",
+        "cursor": "pointer",
+        // "border": "1px solid #eee",
+        // "borderRadius": "2px",
+        "isWholeLine": true,
+        //other styling properties goes here ...
+    },
+    "todohighlight.exclude": [
+        "**/node_modules/**",
+        "**/bower_components/**",
+        "**/dist/**",
+        "**/build/**",
+        "**/.vscode/**",
+        "**/.github/**",
+        "**/_output/**",
+        "**/*.min.*",
+        "**/*.map",
+        "**/.next/**",
+        "**/settings.json",
+        "**/*.i",
+    ],
+    // Enable or disable the highlight
+    "todohighlight.isEnable": true,
+
+    // Removes red error squiggles from source code
+    // Usually it's from vscode not knowing the build options
+    "C_Cpp.errorSquiggles": "Disabled",
+
+    // Disables grayed out regions from #define
+    "C_Cpp.dimInactiveRegions": true,
+
+    // Makes this extension stop taking up constant CPU
+    "C_Cpp.intelliSenseCacheSize": 0,
+
+    // Color preferences/themes
+    "workbench.sideBar.location": "left",
+
+    // Presentation mode settings
+    // Ctrl+Shift+P "Presentation mode"
+    // Ctrl+Shift+P "Developer: Toggle screencast mode"
+    "presentationMode.zoomLevel": 2,
+
+    // Enables IAR intellisense and build capabilities
+    "iar.enabled": false,
+    "C_Cpp.updateChannel": "Insiders",
+
+    "atlascode.jira.workingSite": {
+        "baseUrlSuffix": "atlassian.net"
+    },
+    "yaml.schemas": {
+        "file:///c%3A/Users/edelatorre/.vscode/extensions/atlassian.atlascode-2.0.0/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+    },
+    "svn.enableProposedApi": "none",
+
+    "editor.renderWhitespace": "selection",
+    "editor.renderControlCharacters": true,
+    "editor.renderIndentGuides": true,
+
+    // Allow snippets in comments
+    "editor.quickSuggestions.comments": true,
+    "terminal.integrated.shell.windows": "C:\\windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+
+    // "terminal.integrated.rendererType": "dom",
+}
