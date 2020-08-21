@@ -69,6 +69,8 @@
         "*gitMigrateDummyFile*": true,
         "*testFile*": true,
         "*makeBins*": true,
+        "**/arm_common/STM32L4Plus/Drivers/STM32L4xx_HAL_Driver/Src": true,
+        "**/arm_common/STM32L4Plus/Drivers/STM32L4xx_HAL_Driver/Inc": true,
     },
 
     "search.exclude": {
@@ -129,6 +131,8 @@
         "*gitMigrateDummyFile*": true,
         "*testFile*": true,
         "*makeBins*": true,
+        "**/arm_common/STM32L4Plus/Drivers/STM32L4xx_HAL_Driver/Src": true,
+        "**/arm_common/STM32L4Plus/Drivers/STM32L4xx_HAL_Driver/Inc": true,
     },
 
     "files.watcherExclude": {
@@ -193,6 +197,8 @@
         "*gitMigrateDummyFile*": true,
         "*testFile*": true,
         "*makeBins*": true,
+        "**/arm_common/STM32L4Plus/Drivers/STM32L4xx_HAL_Driver/Src": true,
+        "**/arm_common/STM32L4Plus/Drivers/STM32L4xx_HAL_Driver/Inc": true,
     },
 
     "python.linting.pylintEnabled": true,
