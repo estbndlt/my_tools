@@ -23,44 +23,6 @@
             "problemMatcher": []
         },
         {
-            "label": "Run Current Bolusaurus UT (no debugger)",
-            "type": "shell",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "presentation": {
-                "echo": true,
-                "reveal": "always",
-                "focus": true,
-                "panel": "shared",
-                "showReuseMessage": true
-            },
-            // Unit test is selected regardless of whether the module or module UT is the current tab open
-            // ex. arm_log.c arm_log.h or ut_arm_log.c will default to opening ut_arm_log.c
-            "command": "cd $(cygpath '${workspaceFolder}') && ./unittests_cmake.py --projects=bolusaurus --unit-tests=$(echo ${fileBasenameNoExtension} | perl -ne 's/^(?!ut_)([a-zA-Z0-9._]+)/ut_$1/g; print;') --check-coverage -f",
-            "problemMatcher": []
-        },
-        {
-            "label": "Run Current Unicorn UT (no debugger)",
-            "type": "shell",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "presentation": {
-                "echo": true,
-                "reveal": "always",
-                "focus": true,
-                "panel": "shared",
-                "showReuseMessage": true
-            },
-            // Unit test is selected regardless of whether the module or module UT is the current tab open
-            // ex. arm_log.c arm_log.h or ut_arm_log.c will default to opening ut_arm_log.c
-            "command": "cd $(cygpath '${workspaceFolder}') && ./unittests_cmake.py --projects=unicorn --unit-tests=$(echo ${fileBasenameNoExtension} | perl -ne 's/^(?!ut_)([a-zA-Z0-9._]+)/ut_$1/g; print;') --check-coverage -f",
-            "problemMatcher": []
-        },
-        {
             "label": "Run Current Narwhal UT (no debugger)",
             "type": "shell",
             "group": {
@@ -77,6 +39,44 @@
             // Unit test is selected regardless of whether the module or module UT is the current tab open
             // ex. arm_log.c arm_log.h or ut_arm_log.c will default to opening ut_arm_log.c
             "command": "cd $(cygpath '${workspaceFolder}') && ./unittests_cmake.py --projects=narwhal --unit-tests=$(echo ${fileBasenameNoExtension} | perl -ne 's/^(?!ut_)([a-zA-Z0-9._]+)/ut_$1/g; print;') --check-coverage -f",
+            "problemMatcher": []
+        },
+        {
+            "label": "Run Current Fall UT (no debugger)",
+            "type": "shell",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true
+            },
+            // Unit test is selected regardless of whether the module or module UT is the current tab open
+            // ex. arm_log.c arm_log.h or ut_arm_log.c will default to opening ut_arm_log.c
+            "command": "cd $(cygpath '${workspaceFolder}') && ./unittests_cmake.py --projects=fall --unit-tests=$(echo ${fileBasenameNoExtension} | perl -ne 's/^(?!ut_)([a-zA-Z0-9._]+)/ut_$1/g; print;') --check-coverage -f",
+            "problemMatcher": []
+        },
+        {
+            "label": "Run Current Spring UT (no debugger)",
+            "type": "shell",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true
+            },
+            // Unit test is selected regardless of whether the module or module UT is the current tab open
+            // ex. arm_log.c arm_log.h or ut_arm_log.c will default to opening ut_arm_log.c
+            "command": "cd $(cygpath '${workspaceFolder}') && ./unittests_cmake.py --projects=spring --unit-tests=$(echo ${fileBasenameNoExtension} | perl -ne 's/^(?!ut_)([a-zA-Z0-9._]+)/ut_$1/g; print;') --check-coverage -f",
             "problemMatcher": []
         },
         {
@@ -220,7 +220,7 @@
             "problemMatcher": []
         },
         {
-            "label": "JollyBuild Wombat Pump",
+            "label": "JollyBuild Wombat",
             "type": "shell",
             "group": {
                 "kind": "build",
@@ -235,29 +235,7 @@
             },
             "command": [
                 "cd $(cygpath '${workspaceFolder}/JollyBuilder')",
-                "&& ./jolly_builder.py all --projects wombat_pump_ciq   --output wombat/pump/ciq   --overwrite --no-include-ble-bl --create-patch",
-                "&& ./jolly_builder.py all --projects wombat_pump_biq   --output wombat/pump/biq   --overwrite --no-include-ble-bl --create-patch",
-                "&& ./jolly_builder.py all --projects wombat_pump_itool --output wombat/pump/itool --overwrite --no-include-ble-bl --create-patch",
-            ],
-            "problemMatcher": []
-        },
-        {
-            "label": "JollyBuild Wombat Controller",
-            "type": "shell",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "presentation": {
-                "echo": true,
-                "reveal": "always",
-                "focus": true,
-                "panel": "shared",
-                "showReuseMessage": true
-            },
-            "command": [
-                "cd $(cygpath '${workspaceFolder}/JollyBuilder')",
-                "&& ./jolly_builder.py all --projects wombat_controller_itool --output wombat/controller/itool --overwrite --no-include-ble-bl --create-patch",
+                "&& ./jolly_builder.py all --projects wombat_controller_app,wombat_pump_ciq --no-include-ble-bl --create-patch",
             ],
             "problemMatcher": []
         },

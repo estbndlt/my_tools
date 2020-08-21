@@ -65,10 +65,10 @@
             ]
         },
         {
-            "name": "(gdb) Run Bolusaurus 6.4 UT",
+            "name": "(gdb) Run Fall CIQ UT",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/build/bolusaurus_6_4.ninja/bin/${fileBasenameNoExtension}.exe",
+            "program": "${workspaceFolder}/build/fall_ciq.ninja/bin/${fileBasenameNoExtension}.exe",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
@@ -85,10 +85,50 @@
             ]
         },
         {
-            "name": "(gdb) Run Unicorn 7.3 UT",
+            "name": "(gdb) Run Fall BIQ UT",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/build/unicorn_7_3.ninja/bin/${fileBasenameNoExtension}.exe",
+            "program": "${workspaceFolder}/build/fall_biq.ninja/bin/${fileBasenameNoExtension}.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": true,
+            "MIMode": "gdb",
+            "miDebuggerPath": "C:\\cygwin\\bin\\gdb.exe",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": false
+                }
+            ]
+        },
+        {
+            "name": "(gdb) Run Spring CIQ UT",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/spring_ciq.ninja/bin/${fileBasenameNoExtension}.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": true,
+            "MIMode": "gdb",
+            "miDebuggerPath": "C:\\cygwin\\bin\\gdb.exe",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": false
+                }
+            ]
+        },
+        {
+            "name": "(gdb) Run Spring BIQ UT",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/spring_biq.ninja/bin/${fileBasenameNoExtension}.exe",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
@@ -109,6 +149,26 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/build/narwhal_b_3_pro.ninja/bin/${fileBasenameNoExtension}.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": true,
+            "MIMode": "gdb",
+            "miDebuggerPath": "C:\\cygwin\\bin\\gdb.exe",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": false
+                }
+            ]
+        },
+        {
+            "name": "(gdb) Run Narwhal 2.0 UT",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/narwhal_2_0.ninja/bin/${fileBasenameNoExtension}.exe",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
