@@ -125,4 +125,9 @@
     "terminal.integrated.shell.windows": "C:\\windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
 
     // "terminal.integrated.rendererType": "dom",
+
+    // formatting options
+    "editor.formatOnSave": false,
+    "editor.formatOnSaveMode": "modifications",
+    "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: LLVM, IndentWidth: 4, ColumnLimit: 79, TabWidth: 4, BreakBeforeBraces: Allman, AlignConsecutiveAssignments: false, AlignOperands: false, AllowAllArgumentsOnNextLine: true, AllowShortIfStatementsOnASingleLine: false, AlignAfterOpenBracket: Align, BreakBeforeBinaryOperators: All, DerivePointerAlignment: false, PointerAlignment: Middle, IndentPPDirectives: BeforeHash, IndentCaseLabels: true}"
 }
