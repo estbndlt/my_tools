@@ -4,7 +4,7 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Run Current Wombat UT (no debugger)",
+            "label": "Run Current Project UT (no debugger)",
             "type": "shell",
             "group": {
                 "kind": "build",
@@ -19,83 +19,7 @@
             },
             // Unit test is selected regardless of whether the module or module UT is the current tab open
             // ex. arm_log.c arm_log.h or ut_arm_log.c will default to opening ut_arm_log.c
-            "command": "cd $(cygpath '${workspaceFolder}') && ./unittests_cmake.py --projects=wombat_2_0 --unit-tests=$(echo ${fileBasenameNoExtension} | perl -ne 's/^(?!ut_)([a-zA-Z0-9._]+)/ut_$1/g; print;')  --check-coverage -f",
-            "problemMatcher": []
-        },
-        {
-            "label": "Run Current Narwhal UT (no debugger)",
-            "type": "shell",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "presentation": {
-                "echo": true,
-                "reveal": "always",
-                "focus": true,
-                "panel": "shared",
-                "showReuseMessage": true
-            },
-            // Unit test is selected regardless of whether the module or module UT is the current tab open
-            // ex. arm_log.c arm_log.h or ut_arm_log.c will default to opening ut_arm_log.c
-            "command": "cd $(cygpath '${workspaceFolder}') && ./unittests_cmake.py --projects=narwhal --unit-tests=$(echo ${fileBasenameNoExtension} | perl -ne 's/^(?!ut_)([a-zA-Z0-9._]+)/ut_$1/g; print;') --check-coverage -f",
-            "problemMatcher": []
-        },
-        {
-            "label": "Run Current Fall UT (no debugger)",
-            "type": "shell",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "presentation": {
-                "echo": true,
-                "reveal": "always",
-                "focus": true,
-                "panel": "shared",
-                "showReuseMessage": true
-            },
-            // Unit test is selected regardless of whether the module or module UT is the current tab open
-            // ex. arm_log.c arm_log.h or ut_arm_log.c will default to opening ut_arm_log.c
-            "command": "cd $(cygpath '${workspaceFolder}') && ./unittests_cmake.py --projects=fall --unit-tests=$(echo ${fileBasenameNoExtension} | perl -ne 's/^(?!ut_)([a-zA-Z0-9._]+)/ut_$1/g; print;') --check-coverage -f",
-            "problemMatcher": []
-        },
-        {
-            "label": "Run Current Spring UT (no debugger)",
-            "type": "shell",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "presentation": {
-                "echo": true,
-                "reveal": "always",
-                "focus": true,
-                "panel": "shared",
-                "showReuseMessage": true
-            },
-            // Unit test is selected regardless of whether the module or module UT is the current tab open
-            // ex. arm_log.c arm_log.h or ut_arm_log.c will default to opening ut_arm_log.c
-            "command": "cd $(cygpath '${workspaceFolder}') && ./unittests_cmake.py --projects=spring --unit-tests=$(echo ${fileBasenameNoExtension} | perl -ne 's/^(?!ut_)([a-zA-Z0-9._]+)/ut_$1/g; print;') --check-coverage -f",
-            "problemMatcher": []
-        },
-        {
-            "label": "Run Current Wombat Controller UT (no debugger)",
-            "type": "shell",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "presentation": {
-                "echo": true,
-                "reveal": "always",
-                "focus": true,
-                "panel": "shared",
-                "showReuseMessage": true
-            },
-            // Unit test is selected regardless of whether the module or module UT is the current tab open
-            // ex. arm_log.c arm_log.h or ut_arm_log.c will default to opening ut_arm_log.c
-            "command": "cd $(cygpath '${workspaceFolder}') && ./unittests_cmake.py --projects=wombat_controller --unit-tests=$(echo ${fileBasenameNoExtension} | perl -ne 's/^(?!ut_)([a-zA-Z0-9._]+)/ut_$1/g; print;') --check-coverage -f",
+            "command": "cd $(cygpath '${workspaceFolder}') && ./unittests_cmake.py --projects='${input:ut_project}' --unit-tests=$(echo ${fileBasenameNoExtension} | perl -ne 's/^(?!ut_)([a-zA-Z0-9._]+)/ut_$1/g; print;') --check-coverage -f",
             "problemMatcher": []
         },
         {
@@ -118,7 +42,7 @@
             "problemMatcher": []
         },
         {
-            "label": "Run All Wombat Pump UTs",
+            "label": "Run All Project UTs",
             "type": "shell",
             "group": {
                 "kind": "build",
@@ -131,58 +55,7 @@
                 "panel": "shared",
                 "showReuseMessage": true
             },
-            "command": "cd $(cygpath '${workspaceFolder}') && ./unittests_cmake.py --project=wombat_2_0 -f",
-            "problemMatcher": []
-        },
-        {
-            "label": "Run All Wombat Controller UTs",
-            "type": "shell",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "presentation": {
-                "echo": true,
-                "reveal": "always",
-                "focus": true,
-                "panel": "shared",
-                "showReuseMessage": true
-            },
-            "command": "cd $(cygpath '${workspaceFolder}') && ./unittests_cmake.py --project=wombat_controller -f",
-            "problemMatcher": []
-        },
-        {
-            "label": "Run All Centaur UTs",
-            "type": "shell",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "presentation": {
-                "echo": true,
-                "reveal": "always",
-                "focus": true,
-                "panel": "shared",
-                "showReuseMessage": true
-            },
-            "command": "cd $(cygpath '${workspaceFolder}') && ./unittests_cmake.py --project=centaur -f",
-            "problemMatcher": []
-        },
-        {
-            "label": "Run All Unicorn UTs",
-            "type": "shell",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "presentation": {
-                "echo": true,
-                "reveal": "always",
-                "focus": true,
-                "panel": "shared",
-                "showReuseMessage": true
-            },
-            "command": "cd $(cygpath '${workspaceFolder}') && ./unittests_cmake.py --project=unicorn -f",
+            "command": "cd $(cygpath '${workspaceFolder}') && ./unittests_cmake.py --project='${input:project_id}' -f",
             "problemMatcher": []
         },
         {
@@ -220,7 +93,7 @@
             "problemMatcher": []
         },
         {
-            "label": "JollyBuild Wombat",
+            "label": "Scooter Build Project",
             "type": "shell",
             "group": {
                 "kind": "build",
@@ -235,12 +108,12 @@
             },
             "command": [
                 "cd $(cygpath '${workspaceFolder}/JollyBuilder')",
-                "&& ./jolly_builder.py all --projects wombat_controller_app,wombat_pump_ciq --no-include-ble-bl --create-patch",
+                "&& ./jolly_builder.py scooter --projects '${input:project_id}' --no-include-ble-bl --create-patch",
             ],
             "problemMatcher": []
         },
         {
-            "label": "Lint Wombat Pump CIQ File",
+            "label": "Lint Project File",
             "type": "shell",
             "group": {
                 "kind": "build",
@@ -255,29 +128,29 @@
             },
             "command": [
                 "cd $(cygpath '${workspaceFolder}/embedded/lint')",
-                "&& ./run_lint.py --ewp-path $(cygpath '../arm1/wombat/wombat_ctx.ewp') --project-name 'Control IQ' --output output --single-file $(cygpath '${file}') --lint-overrides $(cygpath '../arm1/wombat/lint_cfg/options.lnt')",
+                "&& ./run_lint.py --project-id '${input:project_id_chip}' --output './output' --single-file $(cygpath '${file}')",
             ],
             "problemMatcher": []
         },
+    ],
+    "inputs": [
         {
-            "label": "Lint Wombat Controller File",
-            "type": "shell",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "presentation": {
-                "echo": true,
-                "reveal": "always",
-                "focus": true,
-                "panel": "shared",
-                "showReuseMessage": true
-            },
-            "command": [
-                "cd $(cygpath '${workspaceFolder}/embedded/lint')",
-                "&& ./run_lint.py --ewp-path $(cygpath '../arm1/wombatController/EWARM/Project.ewp') --project-name 'controller_APP' --output output --single-file $(cygpath '${file}') --lint-overrides $(cygpath '../arm1/wombat/lint_cfg/options.lnt')",
-            ],
-            "problemMatcher": []
-        }
+            "id": "project_id_chip",
+            "description": "Project ID:Chip (arm, msp, nrf)",
+            "default": "wombat_pump_ciq:arm",
+            "type": "promptString"
+        },
+        {
+            "id": "project_id",
+            "description": "Project ID",
+            "default": "wombat_pump_ciq",
+            "type": "promptString"
+        },
+        {
+            "id": "ut_project",
+            "description": "Project ID",
+            "default": "wombat_2_0_ciq",
+            "type": "promptString"
+        },
     ]
 }
