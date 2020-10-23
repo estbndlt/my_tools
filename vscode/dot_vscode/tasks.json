@@ -128,7 +128,7 @@
             },
             "command": [
                 "cd $(cygpath '${workspaceFolder}/embedded/lint')",
-                "&& ./run_lint.py --project-id '${input:project_id_chip}' --output './output' --single-file $(cygpath '${file}')",
+                "&& ./run_lint.py --project-id '${input:project_id_chip}' --output './output' --fast --filter '${fileBasenameNoExtension}'",
             ],
             "problemMatcher": []
         },
