@@ -128,7 +128,27 @@
             },
             "command": [
                 "cd $(cygpath '${workspaceFolder}/embedded/lint')",
-                "&& ./run_lint.py --project-id '${input:project_id_chip}' --output './output' --fast --filter '${fileBasenameNoExtension}'",
+                "&& ./run_lint.py --project-id '${input:project_id_chip}' --output './output' ${input:flag_fast} --filter '${fileBasenameNoExtension}'",
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "Lint Project",
+            "type": "shell",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true
+            },
+            "command": [
+                "cd $(cygpath '${workspaceFolder}/embedded/lint')",
+                "&& ./run_lint.py --project-id '${input:project_id_chip}' --output './output' ${input:flag_fast}",
             ],
             "problemMatcher": []
         },
@@ -149,7 +169,13 @@
         {
             "id": "ut_project",
             "description": "Project ID",
-            "default": "wombat_2_0_ciq",
+            "default": "wbt_pump_ciq",
+            "type": "promptString"
+        },
+        {
+            "id": "flag_fast",
+            "description": "Run Fast",
+            "default": "--fast",
             "type": "promptString"
         },
     ]

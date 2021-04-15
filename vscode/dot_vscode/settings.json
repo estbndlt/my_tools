@@ -215,6 +215,12 @@
         "array": "c",
         "xutility": "c",
         "iosfwd": "c",
-        "xlocbuf": "c"
+        "xlocbuf": "c",
+        "ui_bolus_confirm.h": "c",
+        "ctx_hw_config.h": "c",
+        "pc_unittest_utilities.h": "c",
+        "stm32_assert.h": "c",
+        "arm_calc.h": "c"
     },
+    "cmake.configureOnOpen": false,
 }
