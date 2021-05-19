@@ -65,10 +65,10 @@
             ]
         },
         {
-            "name": "(gdb) Run Fall CIQ UT",
+            "name": "(gdb) Run X2 Current CIQ UT",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/build/fall_ciq.ninja/bin/${fileBasenameNoExtension}.exe",
+            "program": "${workspaceFolder}/build/x2_curr_ciq.ninja/bin/${fileBasenameNoExtension}.exe",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
@@ -85,10 +85,10 @@
             ]
         },
         {
-            "name": "(gdb) Run Fall BIQ UT",
+            "name": "(gdb) Run X2 Current BIQ UT",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/build/fall_biq.ninja/bin/${fileBasenameNoExtension}.exe",
+            "program": "${workspaceFolder}/build/x2_curr_biq.ninja/bin/${fileBasenameNoExtension}.exe",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
@@ -105,10 +105,10 @@
             ]
         },
         {
-            "name": "(gdb) Run Spring CIQ UT",
+            "name": "(gdb) Run X2 Current CIQ OUS UT",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/build/spring_ciq.ninja/bin/${fileBasenameNoExtension}.exe",
+            "program": "${workspaceFolder}/build/x2_curr_ciq_ous.ninja/bin/${fileBasenameNoExtension}.exe",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
@@ -125,30 +125,10 @@
             ]
         },
         {
-            "name": "(gdb) Run Spring BIQ UT",
+            "name": "(gdb) Run Narwhal B.5 Pro UT",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/build/spring_biq.ninja/bin/${fileBasenameNoExtension}.exe",
-            "args": [],
-            "stopAtEntry": false,
-            "cwd": "${workspaceFolder}",
-            "environment": [],
-            "externalConsole": true,
-            "MIMode": "gdb",
-            "miDebuggerPath": "C:\\cygwin\\bin\\gdb.exe",
-            "setupCommands": [
-                {
-                    "description": "Enable pretty-printing for gdb",
-                    "text": "-enable-pretty-printing",
-                    "ignoreFailures": false
-                }
-            ]
-        },
-        {
-            "name": "(gdb) Run Narwhal B.3 Pro UT",
-            "type": "cppdbg",
-            "request": "launch",
-            "program": "${workspaceFolder}/build/narwhal_b_3_pro.ninja/bin/${fileBasenameNoExtension}.exe",
+            "program": "${workspaceFolder}/build/narwhal_b_5_pro.ninja/bin/${fileBasenameNoExtension}.exe",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
@@ -169,6 +149,26 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/build/narwhal_2_0.ninja/bin/${fileBasenameNoExtension}.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": true,
+            "MIMode": "gdb",
+            "miDebuggerPath": "C:\\cygwin\\bin\\gdb.exe",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": false
+                }
+            ]
+        },
+        {
+            "name": "(gdb) Run Nacho Libre 2 UT",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/x2_nacho_libre2.ninja/bin/${fileBasenameNoExtension}.exe",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
