@@ -1,0 +1,182 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Run Current Project UT (no debugger)",
+            "type": "shell",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true
+            },
+            // Unit test is selected regardless of whether the module or module UT is the current tab open
+            // ex. arm_log.c arm_log.h or ut_arm_log.c will default to opening ut_arm_log.c
+            "command": "cd '${workspaceFolder}' && ./unittests_cmake.py --projects='${input:ut_project}' --unit-tests=$(echo ${fileBasenameNoExtension} | perl -ne 's/^(?!ut_)([a-zA-Z0-9._]+)/ut_$1/g; print;') --check-coverage -f",
+            "problemMatcher": []
+        },
+        {
+            "label": "Run Current UT All Projects (no debugger)",
+            "type": "shell",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true
+            },
+            // Unit test is selected regardless of whether the module or module UT is the current tab open
+            // ex. arm_log.c arm_log.h or ut_arm_log.c will default to opening ut_arm_log.c
+            "command": "cd '${workspaceFolder}' && ./unittests_cmake.py --unit-tests=$(echo ${fileBasenameNoExtension} | perl -ne 's/^(?!ut_)([a-zA-Z0-9._]+)/ut_$1/g; print;') --check-coverage --keep-going",
+            "problemMatcher": []
+        },
+        {
+            "label": "Run All Project UTs",
+            "type": "shell",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true
+            },
+            "command": "cd '${workspaceFolder}' && ./unittests_cmake.py --project='${input:project_id}' -f",
+            "problemMatcher": []
+        },
+        {
+            "label": "Build All UTs",
+            "type": "shell",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true
+            },
+            "command": "cd '${workspaceFolder}' && ./unittests_cmake.py build -f",
+            "problemMatcher": []
+        },
+        {
+            "label": "Run All UTs",
+            "type": "shell",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true
+            },
+            "command": "cd '${workspaceFolder}' && ./unittests_cmake.py -f",
+            "problemMatcher": []
+        },
+        {
+            "label": "Scooter Build Project",
+            "type": "shell",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true
+            },
+            "command": [
+                "cd '${workspaceFolder}/JollyBuilder')",
+                "&& ./jolly_builder.py scooter --projects '${input:project_id}' --no-include-ble-bl --create-patch",
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "Lint Project File",
+            "type": "shell",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true
+            },
+            "command": [
+                "cd '${workspaceFolder}/embedded/lint')",
+                "&& ./run_lint.py --project-id '${input:project_id_chip}' --output './output' ${input:flag_fast} --filter '${fileBasenameNoExtension}'",
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "Lint Project",
+            "type": "shell",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true
+            },
+            "command": [
+                "cd '${workspaceFolder}/embedded/lint')",
+                "&& ./run_lint.py --project-id '${input:project_id_chip}' --output './output' ${input:flag_fast}",
+            ],
+            "problemMatcher": []
+        },
+    ],
+    "inputs": [
+        {
+            "id": "project_id_chip",
+            "description": "Project ID:Chip (arm, msp, nrf)",
+            "default": "wombat_pump_ciq:arm",
+            "type": "promptString"
+        },
+        {
+            "id": "project_id",
+            "description": "Project ID",
+            "default": "wombat_pump_ciq",
+            "type": "promptString"
+        },
+        {
+            "id": "ut_project",
+            "description": "Project ID",
+            "default": "wbt_pump_ciq",
+            "type": "promptString"
+        },
+        {
+            "id": "flag_fast",
+            "description": "Run Fast",
+            "default": "--fast",
+            "type": "promptString"
+        },
+    ]
+}
