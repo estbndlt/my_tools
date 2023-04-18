@@ -1,0 +1,235 @@
+#########################################################################################################################
+# COPYRIGHT Tandem Diabetes Care 2019. All rights reserved.
+# FILE:                .gitconfig
+# LOCATION:            terminal:           ~/.gitconfig
+#                      windows filesystem: c:/users/<username>/.gitconfig
+# REVISION:            0.9.9
+# ORIGINAL AUTHOR:     Esteban de la Torre
+#
+# Description:         Example .gitconfig configuration file
+#
+# Runs on:             GIT BASH(git version 2.16.1.windows.2 or newer) on top of Windows 10 enterprice 64bit.
+# High level excution steps:
+#########################################################################################################################
+
+# USER SPECIFIC CONF, REPLACE WITH YOURS
+[user]
+        name = Esteban de la Torre
+        email = edelatorre@tandemdiabetes.com
+
+
+# GENERAL CONF, just copy paste everything below this line
+[color]
+        ui = auto
+[core]
+        filemode = false
+        bare = false
+        logallrefupdates = true
+        longpaths = true
+
+# GENERIC AUTHENTICATION CONF
+[http]
+        sslverify = true
+	sslCAInfo = /home/edelatorre/.git-certs/cert.pem
+# GIT BASH specific
+[credential]
+	helper = store
+# WINDOWS SPECIFIC LINE ENDING CONF
+[core]
+        autocrlf = input
+
+# NOTE notepad++ must be installed first
+        editor = vim
+# nano editor is built in
+#        editor = nano
+# Visual Studio Code must be installed first
+# TRY THESE LOCATIONS\options:
+#       editor = 'C:/Program Files (x86)/Microsoft VS Code/Code.exe' -multiInst -notabbar -nosession -noPlugin
+#       editor = 'C:/Users/<YOUR-USERNAME>/AppData/Local/Programs/Microsoft VS Code/Code.exe' --wait
+#       editor = code --wait
+
+[diff]
+        renameLimit = 6000
+        tool = bc
+# GIT BASH DOES NOT REQUIRE EXTERNAL SCRIPT FOR GUI DIFF OR GUI MERGE
+[difftool "bc"]
+        path = c:/Program Files/Beyond Compare 4/bcomp.exe
+[difftool]
+        prompt = false
+[merge]
+        tool = bc
+[mergetool "bc"]
+        path = c:/Program Files/Beyond Compare 4/bcomp.exe
+[mergetool]
+        prompt = false
+        keepBackup = false
+# GENERIC ALIAS SHORTHANDS FOR GIT
+##################################
+[alias]
+        # LIST ALL GIT ALIASES
+        ######################
+        list-alias = "!sed -n '/alias/,$p' ~/.gitconfig"
+
+        # LIST VARIABLES WITH .GITCONFIG FILE LOCATION
+        ##############################################
+        gitconfig-list-system-variables = "! git config --list --system --show-origin"
+        gitconfig-list-all-variables-excluding-alias = "! git config --list --show-origin | awk '1;/alias/{exit}'"
+        # BASIC COMMANDS
+        ################
+        co = checkout
+        br = branch
+        ci = commit
+        st = status
+        ai = add --interactive
+        # do opposite what 'git add' does
+        unadd = reset HEAD --
+        # output details of last tag created
+        tag-describe-last = describe --tags --abbrev=0
+
+        # COMMIT HISTORY VIEWING
+        ########################
+        # GIT GUI history viewer
+        k = !gitk
+        # show latest commit with associated files
+        latest = log -1 --name-status
+        # show commit history in prettier format
+        lg = log --graph --decorate
+        # all branches
+        lga = log --graph --decorate --all
+
+        # COMMIT COMPARE
+        ################
+        # compare all files included in 2 commits.
+        # usage: git commit-diff <sha1> <sha2> OR git commit-diff <branch1> <branch2> OR git commit-diff HEAD HEAD~1
+        # same performance on WSL1 without symlinks(hard copy files to $TMPDIR)
+        # you must export temp folder that is visible by windows OS. example: TMPDIR=/mnt/c/temp/
+        # https://www.sep.com/sep-blog/2017/06/07/20170607wsl-git-and-beyond-compare/
+        compare-commits-gui = \
+          "!f() { \
+             [ ! -z \"$2\" ] || (printf \" \
+             Error: 2 params needed.\n \
+             Usage: git compare-commits-gui sha1 sha2\n \
+                    git compare-commits-gui branch1 branch2\n \
+                    git compare-commits-gui HEAD HEAD~1\n \
+                    git compare-commits-gui --cached HEAD\n\" \
+             && exit 1) && \
+             git difftool -y --dir-diff --no-symlinks $1 $2 ; \
+          }; f"
+        # compare 2 commits and print out lines added/removed
+        compare-commits-stats = \
+            !sh -c 'git diff "$@" | grep "^[+-]" | sort --key=1.2 | uniq -u -s1'
+
+        # BRANCH MERGING
+        ################
+        # show files not merged yet
+        #lc = log ORIG_HEAD.. --stat --no-merges
+        # Show conflicting files. Useful during merge on conflicting file. Think as 'git difftool'.
+        gitk-conflict = !gitk --left-right HEAD...MERGE_HEAD
+
+        # OPRHAN FILE RECOVERY
+        #######################
+        # write dangling/orphaned blobs(files) as orphan-file-<SHA> to current directory.
+        #   -Useful after erronous 'git reset --hard <sha>' or 'git merge -f' or 'git add' without commit.
+        dump-orphan-files-to-disk = \
+                     "! printf \"\n \
+                     Write orphaned blobs(files) as orphan-file-<SHA> to current directory \n\" && \
+                     for blob in $(git fsck --lost-found --unreachable | awk '$2 == \"blob\" { print $3 }'); \
+                     do git cat-file -p $blob > orphan-file-$blob; done ; \
+                     printf \"\nWrote all orphaned files to current dir\n\" ; \
+                     ls -la orphan-file-*"
+
+       # template for alias that requires parameters
+       # alias-name = "!f() { <commands here> }; f"
+
+       # create a local tracking branch for every branch at server
+       #  -useful in case you want a fresh clone and need to work on several feature branches
+       track-all-remote-branches = \
+             "!f() { \
+                 git fetch --all ; git branch -r | grep -v '-' | while read remote; \
+                 do git branch --track \"${remote#origin/}\" \"$remote\";  done ; \
+             }; f"
+
+        # fetch all lfs files, useful when going offline (you want everything to be local on your laptop)
+        lfs-fetch-all = lfs fetch --all
+
+       # CODE SEARCH
+       ###############
+       # search for a string on all of the branches, both local and remote.
+       # useful when you think you did a change but have multiple branches and kind-of-lost-it.
+       # Note, for performance reasons only searches the tips/heads/last commits of the branches.
+       #    -once you find the branch that includes your change use 'git search-all-commits-in-branch <BRANCH> <SEARCH_STRING>'
+       #         for file level search
+       # useful when you think you did a change but have multiple branches and kind-of-lost-it.
+       search-all-branch-heads = \
+               "!f() { \
+                     [ ! -z \"$1\" ] || (printf \"\n \
+                     Error: Usage: git search-all-branch-heads '"SEARCH STRING"'.\n \
+                     1st param must be a single quated search string. Exiting.\n\" && \
+                     exit 1) && \
+                     printf \"\nSearch for a string on all of the branches, both local and remote.\n \
+                     NOTE: For efficiency search includes only tips/heads/last commits of the branches\n \
+                     Usage: git search-all-branch-heads '"SEARCH STRING"'. Make sure you supplied single quoted string! \n\n \
+                     Executing search for pattern ->"$1"<-\n\n\" && \
+                     git fetch --all && \
+                     for commit in $(git branch -a  -v --no-abbrev | awk -F' *' '{print $3}' | grep -v ^-  | \
+                     xargs git grep -a \"$1\" | cut -d':' -f1| sort | uniq ) ; \
+                     do git branch -a --contains $commit ; done | sort | uniq ; \
+               }; f"
+
+       # search every commit in branch for a string pattern, 1st argument is optional and set to master if not specified
+       search-all-commits-in-branch = \
+               "!f() { \
+                     [ ! -z \"$2\" ] || (printf \"\n \
+                     Error: 2 params needed.\n \
+                     Usage: git search-all-commits-in-branch BRANCH '"SEARCH STRING"'\n\" && \
+                     exit 1) && \
+                     git rev-list \"$1\" | while read rev; do git grep \"$2\" $rev; done ; \
+               }; f"
+
+
+       # CHERRY PICK INDIVIDUAL COMMITS FROM ANOTHER BRANCH (can be done from another REPO/branch as well)
+       ###################################################################################################
+       # read more about cherry-pick from:
+       #    https://confluence.tandemdiabetes.com:8443/x/oRclAg
+       # just one commit
+       cherry-pick-one-commit = \
+               "!f() { \
+                     [ ! -z \"$2\" ] || (printf \"\n \
+                     Error: 1 param needed.\n \
+                     Cherry-pick one commit.\n \
+                     Usage:   git cherry-pick-one-commit <oldest-sha> <latest-sha>\n \
+                     Example: git cherry-pick-one-commit 84ef458f5 \n\" \
+                     exit 1) && \
+                     git cherry-pick --strategy=recursive -X theirs $1^..$2 ; \
+               }; f"
+
+
+       # range of commits WITHOUT merge commits
+       cherry-pick-range-no-merge-commits = \
+               "!f() { \
+                     [ ! -z \"$2\" ] || (printf \"\n \
+                     Error: 2 params needed.\n \
+                     Cherry-pick range of commits.\n \
+                     Usage:   git cherry-pick-range-no-merge-commits <oldest-sha> <latest-sha>\n \
+                     Example: git cherry-pick-range-no-merge-commits 84ef458f5 47c2ce90d\n\" \
+                     exit 1) && \
+                     git cherry-pick --strategy=recursive -X theirs $1^..$2 ; \
+               }; f"
+
+       # range of commits WITH merge commits
+       # PLEASE READ MORE:  https://confluence.tandemdiabetes.com:8443/x/UYByAg
+       cherry-pick-range-with-merge-commits = \
+               "!f() { \
+                     [ ! -z \"$3\" ] || (printf \"\n \
+                     Error: 3 params needed.\n \
+                     Cherry-pick range of commits including merge commits, you must specify mainline parent(either 1 or 2)\n \
+                     Usage:   git cherry-pick-range-with-merge-commits <mainline-parent_usually-1> <oldest-sha> <latest-sha>\n \
+                     Example: git cherry-pick-range-with-merge-commits 1 84ef458f5 47c2ce90d\n\" && \
+                     exit 1) && \
+                     git cherry-pick --strategy=recursive -X theirs -m 1 $2^..$3 ; \
+               }; f"
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

@@ -1,7 +1,7 @@
 {
     "configurations": [
         {
-            "name": "Win32",
+            "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/**"
             ],
@@ -22,12 +22,39 @@
                 "SOFTDEVICE_PRESENT",
                 "NRF52"
             ],
-            "windowsSdkVersion": "10.0.18362.0",
-            "compilerPath": "C:/Program Files (x86)/Microsoft Visual Studio/2019/BuildTools/VC/Tools/MSVC/14.26.28801/bin/Hostx64/x64/cl.exe",
+            "compilerPath": "/usr/bin/gcc",
             "cStandard": "c11",
             "cppStandard": "c++17",
-            "intelliSenseMode": "msvc-x64",
-            "configurationProvider": "vector-of-bool.cmake-tools"
+            "intelliSenseMode": "gcc-x64",
+            "configurationProvider": "ms-vscode.cmake-tools"
+        },
+        {
+            "name": "Windows",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "forcedInclude": [
+                "${workspaceFolder}/embedded/common/com_build_options.h"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE",
+                "USE_FULL_ASSERT",
+                "WBT_PUMP_CIQ",
+                "USE_STDPERIPH_DRIVER",
+                "USB_ENABLE",
+                "WOMBAT_2_0",
+                "BLE_STACK_SUPPORT_REQD",
+                "S132",
+                "SOFTDEVICE_PRESENT",
+                "NRF52"
+            ],
+            "compilerPath": "C:/Program Files (x86)/Microsoft Visual Studio/2019/BuildTools/VC/Tools/MSVC/14.29.30037/bin/Hostx64/x64/cl.exe",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "windows-msvc-x64",
+            "configurationProvider": "ms-vscode.cmake-tools"
         }
     ],
     "version": 4

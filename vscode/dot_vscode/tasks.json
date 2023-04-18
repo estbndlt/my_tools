@@ -19,7 +19,7 @@
             },
             // Unit test is selected regardless of whether the module or module UT is the current tab open
             // ex. arm_log.c arm_log.h or ut_arm_log.c will default to opening ut_arm_log.c
-            "command": "cd $(cygpath '${workspaceFolder}') && ./unittests_cmake.py --projects='${input:ut_project}' --unit-tests=$(echo ${fileBasenameNoExtension} | perl -ne 's/^(?!ut_)([a-zA-Z0-9._]+)/ut_$1/g; print;') --check-coverage -f",
+            "command": "cd '${workspaceFolder}' && ./unittests_cmake.py --projects='${input:ut_project}' --unit-tests=$(echo ${fileBasenameNoExtension} | perl -ne 's/^(?!ut_)([a-zA-Z0-9._]+)/ut_$1/g; print;') -f",
             "problemMatcher": []
         },
         {
@@ -38,7 +38,7 @@
             },
             // Unit test is selected regardless of whether the module or module UT is the current tab open
             // ex. arm_log.c arm_log.h or ut_arm_log.c will default to opening ut_arm_log.c
-            "command": "cd $(cygpath '${workspaceFolder}') && ./unittests_cmake.py --unit-tests=$(echo ${fileBasenameNoExtension} | perl -ne 's/^(?!ut_)([a-zA-Z0-9._]+)/ut_$1/g; print;') --check-coverage --keep-going",
+            "command": "cd '${workspaceFolder}' && ./unittests_cmake.py --unit-tests=$(echo ${fileBasenameNoExtension} | perl -ne 's/^(?!ut_)([a-zA-Z0-9._]+)/ut_$1/g; print;') --keep-going",
             "problemMatcher": []
         },
         {
@@ -55,7 +55,7 @@
                 "panel": "shared",
                 "showReuseMessage": true
             },
-            "command": "cd $(cygpath '${workspaceFolder}') && ./unittests_cmake.py --project='${input:project_id}' -f",
+            "command": "cd '${workspaceFolder}' && ./unittests_cmake.py --project='${input:project_id}' -f",
             "problemMatcher": []
         },
         {
@@ -72,7 +72,7 @@
                 "panel": "shared",
                 "showReuseMessage": true
             },
-            "command": "cd $(cygpath '${workspaceFolder}') && ./unittests_cmake.py build -f",
+            "command": "cd '${workspaceFolder}' && ./unittests_cmake.py build -f",
             "problemMatcher": []
         },
         {
@@ -89,7 +89,7 @@
                 "panel": "shared",
                 "showReuseMessage": true
             },
-            "command": "cd $(cygpath '${workspaceFolder}') && ./unittests_cmake.py -f",
+            "command": "cd '${workspaceFolder}' && ./unittests_cmake.py -f",
             "problemMatcher": []
         },
         {
@@ -107,7 +107,7 @@
                 "showReuseMessage": true
             },
             "command": [
-                "cd $(cygpath '${workspaceFolder}/JollyBuilder')",
+                "cd '${workspaceFolder}/JollyBuilder')",
                 "&& ./jolly_builder.py scooter --projects '${input:project_id}' --no-include-ble-bl --create-patch",
             ],
             "problemMatcher": []
@@ -127,8 +127,8 @@
                 "showReuseMessage": true
             },
             "command": [
-                "cd $(cygpath '${workspaceFolder}/embedded/lint')",
-                "&& ./run_lint.py --project-id '${input:project_id_chip}' --output './output' ${input:flag_fast} --filter '${fileBasenameNoExtension}'",
+                "cd '${workspaceFolder}/embedded/lint'",
+                "&& ./run_lint.py --project-id '${input:project_id_chip}' --output './output' ${input:flag_fast} --filter ${fileBasenameNoExtension}",
             ],
             "problemMatcher": []
         },
@@ -147,7 +147,7 @@
                 "showReuseMessage": true
             },
             "command": [
-                "cd $(cygpath '${workspaceFolder}/embedded/lint')",
+                "cd '${workspaceFolder}/embedded/lint'",
                 "&& ./run_lint.py --project-id '${input:project_id_chip}' --output './output' ${input:flag_fast}",
             ],
             "problemMatcher": []
@@ -157,13 +157,13 @@
         {
             "id": "project_id_chip",
             "description": "Project ID:Chip (arm, msp, nrf)",
-            "default": "wombat_pump_ciq:arm",
+            "default": "wbt_pump_ciq:arm",
             "type": "promptString"
         },
         {
             "id": "project_id",
             "description": "Project ID",
-            "default": "wombat_pump_ciq",
+            "default": "wbt_pump_ciq",
             "type": "promptString"
         },
         {
