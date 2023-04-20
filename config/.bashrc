@@ -244,6 +244,21 @@ prepend_path()
   fi
 }
 
+remove_path()
+{
+    DIR=$1
+    NEWPATH=
+    OLD_IFS=$IFS
+    IFS=:
+    for p in $PATH; do
+        if [ $p != $DIR ]; then
+            NEWPATH=${NEWPATH:+$NEWPATH:}$p
+        fi
+    done
+    IFS=$OLD_IFS
+    PATH=$NEWPATH
+}
+
 # Make git bash the default git
 # export PATH="${CDRIVE}/Program Files/Git/cmd/:${PATH}"
 # export PATH="${HOME}/install/bin:${PATH}"
